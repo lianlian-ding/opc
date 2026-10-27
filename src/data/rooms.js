@@ -11,7 +11,7 @@ export const rooms = [
     position: {
       left: "60%",
       top: "48%",
-      width: "15.5%",
+      width: "15%",
       zIndex: 8,
     },
     items: [
@@ -44,7 +44,7 @@ export const rooms = [
     position: {
       left: "79%",
       top: "61%",
-      width: "16.5%",
+      width: "15%",
       zIndex: 9,
     },
     items: [
@@ -110,7 +110,7 @@ export const rooms = [
     position: {
       left: "32%",
       top: "46%",
-      width: "16%",
+      width: "15%",
       zIndex: 7,
     },
     items: [
@@ -143,7 +143,7 @@ export const rooms = [
     position: {
       left: "50%",
       top: "24%",
-      width: "14.5%",
+      width: "15%",
       zIndex: 4,
     },
     items: [
@@ -161,6 +161,138 @@ export const rooms = [
         title: "Reading desk",
         meta: "Thinking",
         body: "沉淀方法论、阅读摘要和阶段性判断。",
+      },
+    ],
+  },
+  {
+    id: "greenhouseRoom",
+    title: "Garden Greenhouse",
+    label: "花房",
+    subtitle: "植物、观察、慢节奏补给",
+    mapHint: "照顾植物，也照顾长期生长",
+    accentColor: "#4fbf7a",
+    secondaryColor: "#f4c95d",
+    asset: "/assets/world/greenhouse.png",
+    position: {
+      left: "22%",
+      top: "28%",
+      width: "15%",
+      zIndex: 3,
+    },
+    items: [
+      {
+        title: "Plant log",
+        meta: "Routine",
+        body: "记录植物、天气、光照和照料节奏，把慢变化留在地图里。",
+      },
+      {
+        title: "Season table",
+        meta: "Observation",
+        body: "沉淀季节感、颜色、气味和生活里的细小灵感。",
+      },
+      {
+        title: "Growth shelf",
+        meta: "Collection",
+        body: "后续可放植物清单、照片、养护笔记和自然观察。",
+      },
+    ],
+  },
+  {
+    id: "bedroomRoom",
+    title: "Quiet Bedroom",
+    label: "卧室",
+    subtitle: "休息、情绪、私人节奏",
+    mapHint: "把恢复力放回日常",
+    accentColor: "#9b7cf4",
+    secondaryColor: "#ff9fcf",
+    asset: "/assets/world/bedroom.png",
+    position: {
+      left: "39%",
+      top: "20%",
+      width: "15%",
+      zIndex: 2,
+    },
+    items: [
+      {
+        title: "Rest rules",
+        meta: "Principle",
+        body: "整理睡眠、独处和恢复状态的个人规则。",
+      },
+      {
+        title: "Mood notes",
+        meta: "Journal",
+        body: "记录情绪波动、生活片段和不需要公开展示的想法。",
+      },
+      {
+        title: "Comfort list",
+        meta: "Archive",
+        body: "后续可放音乐、香气、书单和让人稳定下来的小物。",
+      },
+    ],
+  },
+  {
+    id: "cafeRoom",
+    title: "White Cafe",
+    label: "咖啡馆",
+    subtitle: "社交、城市、轻量会面",
+    mapHint: "收藏城市里的短暂停留",
+    accentColor: "#d99058",
+    secondaryColor: "#74c7b8",
+    asset: "/assets/world/cafe.png",
+    position: {
+      left: "18%",
+      top: "61%",
+      width: "15%",
+      zIndex: 6,
+    },
+    items: [
+      {
+        title: "City counter",
+        meta: "Places",
+        body: "收集咖啡馆、小店、展览和城市漫游里的好去处。",
+      },
+      {
+        title: "Conversation notes",
+        meta: "Social",
+        body: "保留轻量会面、朋友推荐和被一句话点亮的瞬间。",
+      },
+      {
+        title: "Taste trail",
+        meta: "Collection",
+        body: "后续可放咖啡、甜点、店铺地图和城市清单。",
+      },
+    ],
+  },
+  {
+    id: "cabinRoom",
+    title: "Mountain Cabin",
+    label: "小屋",
+    subtitle: "计划、愿望、未来项目",
+    mapHint: "给还没发生的事留一盏灯",
+    accentColor: "#e05b4f",
+    secondaryColor: "#8fc9ff",
+    asset: "/assets/world/cabin.png",
+    position: {
+      left: "87%",
+      top: "38%",
+      width: "15%",
+      zIndex: 6,
+    },
+    items: [
+      {
+        title: "Future board",
+        meta: "Planning",
+        body: "放旅行、学习、作品和下一阶段想认真推进的项目。",
+      },
+      {
+        title: "Wish ledger",
+        meta: "Ideas",
+        body: "记录暂时还没排期、但值得保留的愿望和灵感。",
+      },
+      {
+        title: "Route map",
+        meta: "Roadmap",
+        body: "后续可接入年度计划、目标清单和阶段性里程碑。",
       },
     ],
   },

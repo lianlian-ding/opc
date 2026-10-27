@@ -1,14 +1,88 @@
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 
 const parsePercent = (value) => Number.parseFloat(String(value).replace("%", ""));
 const formatPercent = (value) => `${value.toFixed(1)}%`;
+const MAP_POSITION_STORAGE_KEY = "opc-world-map-room-positions-v1";
+const MAP_ROOM_WIDTH = "15%";
+
+const createDefaultPositions = (rooms) =>
+  Object.fromEntries(
+    rooms.map((room) => [
+      room.id,
+      {
+        ...room.position,
+        width: MAP_ROOM_WIDTH,
+      },
+    ]),
+  );
+
+const readSavedPositions = () => {
+  if (typeof window === "undefined") return {};
+
+  try {
+    const savedValue = window.localStorage.getItem(MAP_POSITION_STORAGE_KEY);
+    if (!savedValue) return {};
+
+    const parsedValue = JSON.parse(savedValue);
+    if (!parsedValue || typeof parsedValue !== "object") return {};
+
+    return parsedValue;
+  } catch {
+    return {};
+  }
+};
+
+const mergePositions = (rooms, savedPositions = {}) => {
+  const defaultPositions = createDefaultPositions(rooms);
+
+  return Object.fromEntries(
+    rooms.map((room) => [
+      room.id,
+      {
+        ...defaultPositions[room.id],
+        ...(savedPositions[room.id] ?? {}),
+        width: MAP_ROOM_WIDTH,
+      },
+    ]),
+  );
+};
+
+const serializePositions = (positions) =>
+  Object.fromEntries(
+    Object.entries(positions).map(([roomId, position]) => [
+      roomId,
+      {
+        left: position.left,
+        top: position.top,
+        zIndex: position.zIndex,
+      },
+    ]),
+  );
 
 export default function WorldMap({ rooms, onEnterRoom }) {
   const boardRef = useRef(null);
   const [isEditMode, setIsEditMode] = useState(false);
   const [positions, setPositions] = useState(() =>
-    Object.fromEntries(rooms.map((room) => [room.id, { ...room.position }])),
+    mergePositions(rooms, readSavedPositions()),
   );
+
+  useEffect(() => {
+    setPositions((currentPositions) =>
+      mergePositions(rooms, {
+        ...serializePositions(currentPositions),
+        ...readSavedPositions(),
+      }),
+    );
+  }, [rooms]);
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    window.localStorage.setItem(
+      MAP_POSITION_STORAGE_KEY,
+      JSON.stringify(serializePositions(positions)),
+    );
+  }, [positions]);
 
   const selectedPositionsText = useMemo(
     () =>
@@ -112,7 +186,7 @@ export default function WorldMap({ rooms, onEnterRoom }) {
                   style={{
                     left: position.left,
                     top: position.top,
-                    width: position.width,
+                    width: MAP_ROOM_WIDTH,
                     zIndex: position.zIndex,
                     "--accent": room.accentColor,
                     "--secondary": room.secondaryColor,
